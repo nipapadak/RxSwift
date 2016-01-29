@@ -71,7 +71,7 @@ extension ObservableType {
     - parameter onNext: Action to invoke for each element in the observable sequence.
     - returns: Subscription object used to unsubscribe from the observable sequence.
     */
-    @warn_unused_result(message="http://git.io/rxs.ud")
+    //@warn_unused_result(message="http://git.io/rxs.ud")
     public func subscribeNext(onNext: (E) -> Void)
         -> Disposable {
         let observer = AnonymousObserver<E> { e in

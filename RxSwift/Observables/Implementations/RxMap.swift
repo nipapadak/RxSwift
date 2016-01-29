@@ -102,7 +102,7 @@ class MapWithIndex<SourceType, ResultType> : Producer<ResultType> {
 public var numberOfMapOperators: Int32 = 0
 #endif
 
-class Map<SourceType, ResultType>: Producer<ResultType> {
+class RxMap<SourceType, ResultType>: Producer<ResultType> {
     typealias Selector = (SourceType) throws -> ResultType
 
     private let _source: Observable<SourceType>
@@ -120,7 +120,7 @@ class Map<SourceType, ResultType>: Producer<ResultType> {
 
     override func composeMap<R>(selector: ResultType throws -> R) -> Observable<R> {
         let originalSelector = _selector
-        return Map<SourceType, R>(source: _source, selector: { (s: SourceType) throws -> R in
+        return RxMap<SourceType, R>(source: _source, selector: { (s: SourceType) throws -> R in
             let r: ResultType = try originalSelector(s)
             return try selector(r)
         })
